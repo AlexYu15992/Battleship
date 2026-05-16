@@ -5,10 +5,7 @@ class Main {
         Scanner scanner = new Scanner(System.in);
         Field field = new Field();
 
-
-        field.putHorizontalShip(0, 0, 3);
-        field.putVerticalShip(3, 5, 2);
-        field.putShip(9, 9);1
+        field.setupShips();
         field.print();
         System.out.println();
 

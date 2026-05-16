@@ -116,4 +116,10 @@ class Field {
         }
         return false;
     }
+
+    public void setupShips() {
+        putHorizontalShip(0, 0, 3);
+        putVerticalShip(3, 5, 2);
+        putShip(9, 9);
+    }
 }
