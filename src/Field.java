@@ -10,23 +10,36 @@ class Field {
     }
 
     public void print() {
+        System.out.print("    ");
+        for (int i = 1; i <= 10; i++) {
+            System.out.print(i + "  ");
+        }
+        System.out.println();
         for (int i = 0; i < field.length; i++) {
+            System.out.print((i + 1) + " ");
             for (int j = 0; j < field[i].length; j++) {
-                System.out.print(field[i][j].getSymbol());
+                System.out.print(field[i][j].getSymbol() + " ");
             }
             System.out.println();
         }
     }
 
     public void printHidden() {
+        System.out.print("    ");
+        for (int i = 1; i <= 10; i++) {
+            System.out.print(i + "  ");
+        }
+        System.out.println();
         for (int i = 0; i < field.length; i++) {
+            System.out.print((i + 1) + " ");
             for (int j = 0; j < field[i].length; j++) {
                 if (field[i][j] == Cell.SHIP) {
                     System.out.print(Cell.EMPTY.getSymbol() + " ");
                 } else {
                     System.out.print(field[i][j].getSymbol() + " ");
                 }
-            } System.out.println();
+            }
+            System.out.println();
         }
     }
 
