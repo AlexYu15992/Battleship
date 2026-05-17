@@ -44,19 +44,28 @@ class Field {
     }
 
     public void putShip(int row, int col) {
-        if (row < 0 || col < 0 || row >= field.length || col >= field[row].length) {
+        if (!isInside(row,col)) {
             System.out.println("Неверные координаты");
             return;
         }
-        if (field[row][col] != Cell.EMPTY) {
-            System.out.println("Место занято");
+        if (field[row][col] != Cell.EMPTY || hasShipNear(row,col)) {
+            System.out.println("Место занято или рядом корабль");
             return;
         }
         field[row][col] = Cell.SHIP;
     }
 
     public void putHorizontalShip(int row, int col, int length) {
-        if (length <= 0 || row < 0 || col < 0 || row >= field.length || col + length > field[row].length) {
+        int lastCol = col + length - 1;
+        if (length <= 0 ) {
+            System.out.println("Неверная длина корабля");
+            return;
+        }
+        if (!isInside(row,col)) {
+            System.out.println("Начальная клетка вне поля");
+            return;
+        }
+        if (!isInside(row, lastCol)) {
             System.out.println("Корабль не помещается");
             return;
         }
@@ -67,12 +76,27 @@ class Field {
             }
         }
         for (int i = 0; i < length; i++) {
+            if (hasShipNear(row, col + i)) {
+                System.out.println("Рядом уже есть корабль");
+                return;
+            }
+        }
+        for (int i = 0; i < length; i++) {
             field[row][col + i] = Cell.SHIP;
         }
     }
 
     public void putVerticalShip(int row, int col, int length) {
-        if (length <= 0 || row < 0 || col < 0 || row >= field.length || col >= field[row].length || row + length > field.length) {
+        int lastCol = row + length - 1;
+        if (length <= 0 ) {
+            System.out.println("Неверная длина корабля");
+            return;
+        }
+        if (!isInside(row,col)) {
+            System.out.println("Начальная клетка вне поля");
+            return;
+        }
+        if (!isInside(row, lastCol)) {
             System.out.println("Корабль не помещается");
             return;
         }
@@ -83,12 +107,18 @@ class Field {
             }
         }
         for (int i = 0; i < length; i++) {
+            if (hasShipNear(row + i, col)) {
+                System.out.println("Рядом уже есть корабль");
+                return;
+            }
+        }
+        for (int i = 0; i < length; i++) {
             field[row + i][col] = Cell.SHIP;
         }
     }
 
     public void shoot(int row, int col) {
-        if (row < 0 || col < 0 || row >= field.length || col >= field[row].length) {
+        if (!isInside(row,col)) {
             System.out.println("Неверные координаты");
             return;
         }
@@ -121,5 +151,21 @@ class Field {
         putHorizontalShip(0, 0, 3);
         putVerticalShip(3, 5, 2);
         putShip(9, 9);
+    }
+
+    private boolean isInside(int row, int col) {
+        if (row < 0 || col < 0 || row >= field.length || col >= field[row].length) {
+            return false;
+        }
+        return true;
+    }
+    private boolean hasShipNear(int row, int col) {
+        for (int i = row - 1; i <= row + 1; i++) {
+            for (int j = col - 1; j <= col + 1; j++) {
+                if (isInside(i,j) && field[i][j] == Cell.SHIP) {
+                    return true;
+                }
+            }
+        } return false;
     }
 }
