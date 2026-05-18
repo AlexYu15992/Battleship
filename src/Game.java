@@ -11,6 +11,7 @@ public class Game {
 
     public void start() {
         field.setupShips();
+        field.print();
 
         while (field.hasShips()) {
             field.printHidden();
@@ -21,12 +22,25 @@ public class Game {
 
     private void makeMove() {
 
-            System.out.println("Введите строку для выстрела от 1 до 10:");
-            int row = scanner.nextInt() - 1;
-            System.out.println("Введите столбец для выстрела от 1 до 10:");
-            int col = scanner.nextInt() - 1;
+            int row = readCoordinate("Введите строку для выстрела от 1 до 10:");
+            int col = readCoordinate("Введите столбец для выстрела от 1 до 10:");
             field.shoot(row,col);
+    }
+    private int readCoordinate(String message) {
 
-
+        while (true) {
+            System.out.println(message);
+            if (!scanner.hasNextInt()) {
+                System.out.println("Введите число");
+                scanner.next();
+                continue;
+            }
+            int number = scanner.nextInt();
+            if (number < 1 || number > 10) {
+                System.out.println("Введите число от 1 до 10");
+                continue;
+            }
+            return number - 1;
+        }
     }
 }

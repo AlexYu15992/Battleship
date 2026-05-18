@@ -6,7 +6,9 @@ class Main {
         Field field = new Field();
 
         Game game = new Game(field,scanner);
+        field.print();
         game.start();
+
 
     }
 }
