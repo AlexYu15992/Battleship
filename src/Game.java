@@ -3,6 +3,7 @@ import java.util.Scanner;
 public class Game {
     private Field field;
     private Scanner scanner;
+    private int movesCount;
 
     public Game(Field field, Scanner scanner) {
         this.field = field;
@@ -17,7 +18,7 @@ public class Game {
             field.printHidden();
             makeMove();
         }
-        System.out.println("Победа");
+        System.out.println("Победа! Количество ходов: " + movesCount);
     }
 
     private void makeMove() {
@@ -25,6 +26,7 @@ public class Game {
             int row = readCoordinate("Введите строку для выстрела от 1 до 10:");
             int col = readCoordinate("Введите столбец для выстрела от 1 до 10:");
             field.shoot(row,col);
+            movesCount++;
     }
     private int readCoordinate(String message) {
 
@@ -43,4 +45,6 @@ public class Game {
             return number - 1;
         }
     }
+
+
 }
