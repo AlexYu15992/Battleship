@@ -18,7 +18,7 @@ public class Game {
             field.printHidden();
             makeMove();
         }
-        System.out.println("Победа! Количество ходов: " + movesCount);
+        System.out.println("Победа! Ходов сделано: " + movesCount);
     }
 
     private void makeMove() {
