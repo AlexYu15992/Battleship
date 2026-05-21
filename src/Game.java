@@ -12,6 +12,7 @@ public class Game {
 
     public void start() {
         printRulesMessage();
+        printWelcomeMessage();
         field.setupShips();
         field.print();
 
@@ -24,6 +25,7 @@ public class Game {
 
     }
 
+
     private void printWelcomeMessage() {
         System.out.println("Добро пожаловать в Морской бой!");
 
@@ -33,13 +35,19 @@ public class Game {
         System.out.println("Правила: вводите строку и столбец от 1 до 10.");
     }
 
+
+
+
     private void makeMove() {
 
-            int row = readCoordinate("Введите строку для выстрела от 1 до 10:");
-            int col = readCoordinate("Введите столбец для выстрела от 1 до 10:");
-            field.shoot(row,col);
-            movesCount++;
+        int row = readCoordinate("Введите строку для выстрела от 1 до 10:");
+        int col = readCoordinate("Введите столбец для выстрела от 1 до 10:");
+        field.shoot(row, col);
+        movesCount++;
     }
+
+    
+
     private int readCoordinate(String message) {
 
         while (true) {
@@ -57,6 +65,4 @@ public class Game {
             return number - 1;
         }
     }
-
-
 }
