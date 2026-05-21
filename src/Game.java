@@ -23,6 +23,10 @@ public class Game {
 
     }
 
+    private void printWelcomeMessage() {
+        System.out.println("Добро пожаловать в Морской бой!");
+    }
+
     private void makeMove() {
 
             int row = readCoordinate("Введите строку для выстрела от 1 до 10:");
