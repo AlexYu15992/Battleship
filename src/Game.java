@@ -23,8 +23,13 @@ public class Game {
 
     }
 
+
     private void printRulesMessage() {
         System.out.println("Правила: вводите строку и столбец от 1 до 10.");
+    }
+    private void printWelcomeMessage() {
+        System.out.println("Добро пожаловать в Морской бой!");
+
     }
 
     private void makeMove() {
