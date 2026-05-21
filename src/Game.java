@@ -23,6 +23,10 @@ public class Game {
 
     }
 
+    private void printRulesMessage() {
+        System.out.println("Правила: вводите строку и столбец от 1 до 10.");
+    }
+
     private void makeMove() {
 
             int row = readCoordinate("Введите строку для выстрела от 1 до 10:");
